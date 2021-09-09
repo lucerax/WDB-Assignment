@@ -1,0 +1,11 @@
+Assume fruitniture is added fruit first.
+Assume same first character is case-agnostic. So mango and Mirror gives mangoMirror
+Assuming we want to keep Stanfurd DB separate and not merge them (which would ideally improve maintainability)
+IRL I would sanitize inputs properly ( to prevent SQL injection etc.)
+
+I've decided to keep the fruitnitures stored as their consitutent fruits and furnitures so they can be recombined.
+This is mainly because the spec allows you to add Fruitniture but when deleting you delete a Fruit/Furniture
+If we move to a consolidated model I would go for one main fruitniture Object (which would be cleaner IMO)
+
+In terms of structure, I've used Flask + SQLAlchemy with a models.py file containing classes and operative functions.
+Views.py handles the routing and the HTML is in templates.

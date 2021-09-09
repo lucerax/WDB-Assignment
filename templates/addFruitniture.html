@@ -1,0 +1,24 @@
+<h3>Add Fruitniture Item</h3>
+
+{% if fruitniture_added and name %}
+
+<p><strong>{{name}}</strong> successfully created! Add another below.</p>
+<p><a href="/">Back to Fruitniture List</a></p>
+
+{% elif error %}
+<p>Error in processing input. Please try again.</p>
+<p><a href="/">Back to Fruitniture List</a></p>
+
+{% endif %}
+
+
+<!-- The form action and method correspond to a Flask route -->
+<p> Enter fruitniture in the following form: [Fruit][Furniture] with each being capitalized
+<form action="/addFruitniture" method="POST">
+
+<label for="name_id">Name</label>
+<input id="name_id" name="name_field" type="text" />
+
+<!-- We need a submit button to submit a form! -->
+<input type="submit" value="Add"/>
+</form>

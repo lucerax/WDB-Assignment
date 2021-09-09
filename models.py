@@ -1,29 +1,16 @@
 from app import db
 
 
-class Dessert(db.Model):
-    # See http://flask-sqlalchemy.pocoo.org/2.0/models/#simple-example
-    # for details on the column types.
-
-    # We always need an id
+class Fruit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-
-    # A dessert has a name, a price and some calories:
     name = db.Column(db.String(100))
-    price = db.Column(db.Float)
-    calories = db.Column(db.Integer)
 
-    def __init__(self, name, price, calories):
+    def __init__(self, name):
         self.name = name
-        self.price = price
-        self.calories = calories
-
-    def calories_per_dollar(self):
-        if self.calories:
-            return self.calories / self.price
 
 
-class Menu(db.Model):
+
+class Furniture(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
@@ -32,25 +19,35 @@ class Menu(db.Model):
         self.name = name
 
 
-def create_dessert(new_name, new_price, new_calories):
-    # Create a dessert with the provided input.
-    # At first, we will trust the user.
-
-    # This line maps to line 16 above (the Dessert.__init__ method)
-    dessert = Dessert(new_name, new_price, new_calories)
-
-    # Actually add this dessert to the database
-    db.session.add(dessert)
-
-    # Save all pending changes to the database
+def add_fruit(new_name):
+    fruit = Fruit(new_name)
+    db.session.add(fruit)
     db.session.commit()
 
-    return dessert
+    return fruit
+
+def add_furniture(new_name):
+    furniture = Furniture(new_name)
+    db.session.add(furniture)
+    db.session.commit()
+
+    return furniture
+
+def delete_object(name):
+    deleted = False
+    fruits = db.session.query(Fruit).filter(Fruit.name==name).delete()
+    if fruits:
+        deleted = True
+    furniture = db.session.query(Furniture).filter(Furniture.name==name).delete()
+    if furniture:
+        deleted = True
+    db.session.commit()
+    return deleted
 
 
 if __name__ == "__main__":
 
     # Run this file directly to create the database tables.
-    print "Creating database tables..."
+    print("Creating database tables...")
     db.create_all()
-    print "Done!"
+    print("Done!")

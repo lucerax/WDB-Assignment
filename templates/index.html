@@ -1,9 +1,12 @@
-<h3>Dessert Menu</h3>
+<h3>Fruitniture</h3>
 
 <ul>
-{% for dessert in desserts %}
-    <li>{{ dessert.name }} - ${{ dessert.price }}, {{ dessert.calories }} calories
+{% for f in fruitniture %}
+    <li>{{f}}
 {% endfor %}
 </ul>
 
-<a href="/add">Add Item</a>
+<a href="/addFruit">Add Fruit</a>
+<a href="/addFurniture">Add Furniture</a>
+<a href="/addFruitniture">Add Fruitniture</a>
+<a href="/deleteObject">Delete Object</a>

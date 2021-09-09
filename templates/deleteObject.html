@@ -1,0 +1,20 @@
+<h3>Delete an Object</h3>
+
+{% if deleted and name %}
+
+<p><strong>{{name}}</strong> successfully deleted!</p>
+<p><a href="/">Back to Fruitniture List</a></p>
+
+{% elif deleted == False %}
+<p><strong>{{name}}</strong> not found! Try checking the spelling and capitalization. </p>
+<p><a href="/">Back to Fruitniture List</a></p>
+
+{% endif %}
+
+<form action="/deleteObject" method="POST">
+
+<label for="name_id">Name</label>
+<input id="name_id" name="name_field" type="text" />
+
+<input type="submit" value="Delete"/>
+</form>

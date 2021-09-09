@@ -1,0 +1,20 @@
+<h3>Add Furniture Item</h3>
+
+{% if furniture_added and name %}
+
+<p><strong>{{name}}</strong> successfully created! Add another below.</p>
+<p><a href="/">Back to Fruitniture List</a></p>
+
+
+{% endif %}
+
+
+<!-- The form action and method correspond to a Flask route -->
+<form action="/addFurniture" method="POST">
+
+<label for="name_id">Name</label>
+<input id="name_id" name="name_field" type="text" />
+
+<!-- We need a submit button to submit a form! -->
+<input type="submit" value="Add"/>
+</form>
